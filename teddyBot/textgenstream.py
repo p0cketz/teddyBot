@@ -11,7 +11,7 @@ except ImportError:
     print("Websockets package not found. Make sure it's installed.")
 
 # For local streaming, the websockets are hosted without ssl - ws://
-HOST = 'localhost:5005'
+HOST = '99.247.20.113:5005'
 URI = f'ws://{HOST}/api/v1/chat-stream'
 
 # For reverse-proxied streaming, the remote will likely host with ssl - wss://
@@ -97,6 +97,7 @@ async def print_response_stream(user_input):
         cur_message = new_history['visible'][-1][1][cur_len:]
         cur_tts += cur_message
         cur_len += len(cur_message)
+        
         print(html.unescape(cur_message), end='')
         pattern = r'[^a-zA-Z0-9\s.]'
         cur_message = re.sub(pattern, "", cur_message)
@@ -108,7 +109,7 @@ async def print_response_stream(user_input):
             os.system("ren temp.mp3 play.mp3")
             playsound.playsound("play.mp3")
             cur_tts = ""
-            print("waiting for the next sentance")
+            print("waiting for the next sentence")
 
 
 if __name__ == '__main__':
