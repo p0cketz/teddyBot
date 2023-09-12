@@ -1,7 +1,7 @@
 import requests, base64, os, time, re, translate, asyncio, pyaudio
 import playsound
 import tiktokvoice
-import textgenstream
+from textgenstream import print_response_stream
 import os
 from dotenv import load_dotenv
 import time
@@ -70,7 +70,7 @@ def listen_and_respond(source):
 
             #RIGHT HERE SHIKKY!
             #--------------------------------------------
-            textgenstream.print_response_stream(text)
+            asyncio.run(print_response_stream(text))
             #--------------------------------------------
             #response = re.sub(pattern, "", response)
             #if response == "":
